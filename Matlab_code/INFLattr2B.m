@@ -11,7 +11,7 @@ NN=35;
 NNN=N+1;
 MM=500;
 
-Block=4000;
+Block=10000;
 TT=6;
 
     %baseline parameterization
@@ -26,7 +26,7 @@ lam=1;
 lam2=1;
 
 %IND=[0.035 0.035];
-IND=[0.0025 0.075]; % Optimal two bin montery policy
+IND=[0.0075 0.0575]; % Optimal two bin montery policy
 Inst=0.0400;
 
 critconv1=0.02;
@@ -301,14 +301,14 @@ xvec=zeros(NNN,2);
 yvec=zeros(NNN,2);
 for i=1:count(1)
     for j=1:2
-        xvec(i,j)=0.033+(i-1)*0.005 + (j-1)*0.0055;
-        yvec(i,j)=0.752;
+        xvec(i,j)=0.033+(i-1)*0.005 + (j-1)*0.005;
+        yvec(i,j)=0.621;
     end
 end
 for i=count(1)+1:NNN
     for j=1:2
-        xvec(i,j)=0.082+NNN*0.009 -((i-1-count(1))*0.0097 + (j-1)*0.009);
-        yvec(i,j)=0.752;
+        xvec(i,j)=0.089+NNN*0.009 -((i-1-count(1))*0.01 + (j-1)*0.01);
+        yvec(i,j)=0.621;
     end
 end
 iinp=inp*100;
@@ -326,12 +326,12 @@ plot(inp*100,DIi*100,'Color','k')
 for i=1:(NNN)/3
     annotation('textarrow',xvec(i*3,:),yvec(i*3,:))
 end 
-xlabel('Inflation in previous period (\pi^{t-1})','FontSize',18)
-ylabel('E(\pi^{t}|\pi^{t-1}) - \pi^{t}','FontSize',18)
+xlabel('Inflation in previous period (\pi^{t-1})','FontSize',17)
+ylabel('E(\pi^{t}|\pi^{t-1}) - \pi^{t}')
 txt=['\pi^{t-1}=',num2str(EEii(count(1)),'%2.2f'),'%'];
 text(iinp(count(1))-0.3,-0.03,txt,'FontSize',17);
 xlim([0 20])
-ylim([-1.1 0.4])
+ylim([-0.9 0.6])
 xtickformat('percentage')
 ytickformat('percentage')
 hold off
